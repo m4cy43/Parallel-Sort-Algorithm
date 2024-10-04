@@ -6,16 +6,18 @@ const generateArray = (size) =>
   Array.from({ length: size }, () => Math.floor(Math.random() * size));
 
 (async () => {
+  const workerNum = 10;
   /*
    *  Soring array with bubble sort and parallel bubble sort
    */
+  const bubbleArraySize = 100000;
+  const bubbleArray = generateArray(bubbleArraySize);
 
-  const bubbleArray = generateArray(100000);
   let bubbleParallelTimeExec = performance.now();
   const sortedParallelBubble = await parallelSort(
     bubbleSort,
     [...bubbleArray],
-    10
+    workerNum
   );
   bubbleParallelTimeExec = performance.now() - bubbleParallelTimeExec;
 
@@ -23,6 +25,7 @@ const generateArray = (size) =>
   const sortedBubble = bubbleSort([...bubbleArray]);
   bubbleTimeExec = performance.now() - bubbleTimeExec;
 
+  console.log(`Array size: ${bubbleArraySize}`);
   console.log(
     "Parallel = Bubble?:",
     JSON.stringify(sortedParallelBubble) === JSON.stringify(sortedBubble)
@@ -37,14 +40,14 @@ const generateArray = (size) =>
   /*
    *  Soring array with merge sort and parallel merge sort
    */
-
-  const mergeArray = generateArray(20000000);
+  const mergeArraySize = 20000000;
+  const mergeArray = generateArray(mergeArraySize);
 
   let mergeParallelTimeExec = performance.now();
   const sortedParallelMerge = await parallelSort(
     mergeSort,
     [...mergeArray],
-    10
+    workerNum
   );
   mergeParallelTimeExec = performance.now() - mergeParallelTimeExec;
 
@@ -52,6 +55,7 @@ const generateArray = (size) =>
   const sortedMerge = mergeSort([...mergeArray]);
   mergeTimeExec = performance.now() - mergeTimeExec;
 
+  console.log(`Array size: ${mergeArraySize}`);
   console.log(
     "Parallel = Merge?:",
     JSON.stringify(sortedParallelMerge) === JSON.stringify(sortedMerge)
@@ -64,14 +68,14 @@ const generateArray = (size) =>
   /*
    *  Soring array with merge sort and parallel merge sort
    */
-
-  const quickArray = generateArray(20000000);
+  const quickArraySize = 20000000;
+  const quickArray = generateArray(quickArraySize);
 
   let quickParallelTimeExec = performance.now();
   const sortedParallelQuick = await parallelSort(
     quickSort,
     [...quickArray],
-    10
+    workerNum
   );
   quickParallelTimeExec = performance.now() - quickParallelTimeExec;
 
@@ -79,6 +83,7 @@ const generateArray = (size) =>
   const sortedQuick = quickSort([...quickArray]);
   quickTimeExec = performance.now() - quickTimeExec;
 
+  console.log(`Array size: ${quickArraySize}`);
   console.log(
     "Parallel = Quick?:",
     JSON.stringify(sortedParallelQuick) === JSON.stringify(sortedQuick)
