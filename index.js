@@ -30,7 +30,7 @@ const generateArray = (size) =>
   console.log(`Bubble sort execution time: ${bubbleTimeExec} ms`);
   console.log(`Parallel Bubble: ${bubbleParallelTimeExec} ms`);
   console.log(
-    `Speedup: ${(bubbleParallelTimeExec / bubbleTimeExec).toFixed(2)}`
+    `Speedup: ${(bubbleTimeExec / bubbleParallelTimeExec).toFixed(2)}`
   );
   console.log("\n");
 
@@ -58,7 +58,7 @@ const generateArray = (size) =>
   );
   console.log(`Merge sort execution time: ${mergeTimeExec} ms`);
   console.log(`Parallel Merge: ${mergeParallelTimeExec} ms`);
-  console.log(`Speedup: ${(mergeParallelTimeExec / mergeTimeExec).toFixed(2)}`);
+  console.log(`Speedup: ${(mergeTimeExec / mergeParallelTimeExec).toFixed(2)}`);
   console.log("\n");
 
   /*
@@ -85,5 +85,5 @@ const generateArray = (size) =>
   );
   console.log(`Quick sort execution time: ${quickTimeExec} ms`);
   console.log(`Parallel Quick: ${quickParallelTimeExec} ms`);
-  console.log(`Speedup: ${(quickParallelTimeExec / quickTimeExec).toFixed(2)}`);
+  console.log(`Speedup: ${(quickTimeExec / quickParallelTimeExec).toFixed(2)}`);
 })();
